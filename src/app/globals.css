@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Brand Tokens */
+  --color-brand-dark: #1a1a1a;
+  --color-brand-muted: #808080;
+  --color-brand-light: #f9f9f9;
+
+  /* Typography */
+  --font-serif: 'Times New Roman', serif;
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Base Styles */
+:root {
+  background-color: var(--color-brand-light);
+  color: var(--color-brand-dark);
+}
+
+body {
+  font-family: var(--font-sans);
+  margin: 0;
+  min-height: 100vh;
+}
