@@ -16,7 +16,7 @@ export default function AuthLayout({
       <div className="hidden lg:block lg:w-1/2 relative bg-brand-dark">
         {/* Placeholder image - swap this for your actual artistic shot */}
         <img
-          src="/login/many.jpeg"
+          src="/login/many.png"
           alt="Artistic aesthetic"
           className="object-cover w-full h-full opacity-70"
         />
