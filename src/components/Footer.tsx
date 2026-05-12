@@ -9,9 +9,9 @@ export default function Footer() {
 
         {/* Right Side: Contact Details */}
         <div className="text-right text-xs">
-          <p>hello@figma.com</p>
+          <p>tktstudios.com</p>
           <p>National University</p>
-          <p className="mt-4 text-gray-500">&copy; 2025 All Rights Reserved</p>
+          <p className="mt-4 text-gray-500">&copy; 2026 All Rights Reserved</p>
         </div>
       </div>
     </footer>

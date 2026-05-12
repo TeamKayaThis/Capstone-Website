@@ -18,8 +18,8 @@ export default function Home() {
     <>
       <div className="flex flex-col w-full">
         <Hero
-          title="BEYOND THE SHAKE: Conveying Life beyond Epilepsy"
-          subtitle="Through 2.5D Film Animated Storytelling"
+          title="NGINIG: Conveying Life beyond Epilepsy"
+          subtitle="A 2.5D animated story about life beyond epilepsy."
         />
 
         {/* This will now span the full width of the screen */}

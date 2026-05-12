@@ -16,7 +16,7 @@ export default function AuthLayout({
       <div className="hidden lg:block lg:w-1/2 relative bg-brand-dark overflow-hidden rounded-l-3xl">
         <img
           src="/login/waks.png" // Put your Figma image in the /public folder
-          alt="Beyond the Shake Art"
+          alt="Nginig Art"
           className="object-cover w-full h-full opacity-80"
         />
       </div>

@@ -50,7 +50,7 @@ export default function SignupForm() {
       <div>
         <h1 className="text-3xl font-serif mb-2">Create an account</h1>
         <p className="text-sm text-brand-muted">
-          Join the Beyond the Shake community
+          Join the TKT community
         </p>
       </div>
 

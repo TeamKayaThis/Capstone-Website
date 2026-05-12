@@ -55,7 +55,7 @@ export default function AdminSidebar() {
 
         {/* Footer */}
         <div className="absolute bottom-0 w-full p-4 border-t border-gray-200 text-xs text-gray-500">
-          <p>© 2025 Beyond the Shake</p>
+          <p>© 2025 Nginig</p>
         </div>
       </aside>
 

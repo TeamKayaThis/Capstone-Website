@@ -1,8 +1,8 @@
 import AdminSidebar from '@/src/components/admin/Sidebar';
 
 export const metadata = {
-  title: 'Admin Panel - Beyond the Shake',
-  description: 'Admin dashboard for Beyond the Shake platform',
+  title: 'Admin Panel - Nginig',
+  description: 'Admin dashboard for Nginig platform',
 };
 
 export default function AdminLayout({

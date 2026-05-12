@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Beyond the Shake',
+  title: 'Nginig',
   description:
     'Conveying Life beyond Epilepsy through 2.5D Film Animated Storytelling',
 };

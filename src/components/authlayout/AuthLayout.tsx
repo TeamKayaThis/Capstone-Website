@@ -21,7 +21,7 @@ export default function AuthLayout({
           className="object-cover w-full h-full opacity-70"
         />
         <div className="absolute bottom-10 left-10 text-white font-serif text-2xl">
-          Beyond the Shake
+          Nginig
         </div>
       </div>
     </div>
