@@ -2,27 +2,27 @@ const teamMembers = [
   {
     name: 'KEANA MAXINE P. ALVAREZ',
     role: 'QA Testers',
-    img: '/teamgrid/33.png',
+    img: '/members/maxine.jpg',
   },
   {
     name: 'SAMANTHA JAN S. ORTEGA',
     role: 'UI/UX Designer',
-    img: '/teamgrid/31.jpg',
+    img: '/members/samantha.jpg',
   },
   {
     name: 'LADY CHRYSCHEL B. PRASMO',
     role: 'Project Manager',
-    img: '/teamgrid/35.jpg',
+    img: '/members/lc.jpeg',
   },
   {
     name: 'ADRIANNE A. REYES',
     role: 'UI/UX Designer',
-    img: '/teamgrid/34.jpg',
+    img: '/members/adrianne.jpg',
   },
   {
     name: 'MARY BELEN T. ROGECIO',
     role: 'System Analysis',
-    img: '/teamgrid/32.jpg',
+    img: '/members/mary.jpg',
   },
 ];
 

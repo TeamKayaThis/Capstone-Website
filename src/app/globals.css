@@ -1,24 +1,54 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
+/* =========================
+   THEME TOKENS
+========================= */
 @theme {
-  /* Brand Tokens */
-  --color-brand-dark: #1a1a1a;
-  --color-brand-muted: #808080;
-  --color-brand-light: #f9f9f9;
+  --color-brand-dark: #0a0a0a;
+  --color-brand-muted: #a1a1aa;
+  --color-brand-light: #f4f4f5;
 
-  /* Typography */
-  --font-serif: 'Times New Roman', serif;
+  --font-serif: "Times New Roman", serif;
   --font-sans: ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Base Styles */
-:root {
-  background-color: var(--color-brand-light);
-  color: var(--color-brand-dark);
+/* =========================
+   GLOBAL RESET (CLEAN + FIXED)
+========================= */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  background-color: #0a0a0a;
+  color: #f4f4f5;
+
+  font-family: var(--font-sans);
+
+  /* FIX: prevents double scrollbar */
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  /* smooth rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* IMPORTANT: prevents scroll bounce / chaining issues */
+  overscroll-behavior: none;
 }
 
-body {
-  font-family: var(--font-sans);
-  margin: 0;
-  min-height: 100vh;
+/* prevent layout overflow bugs */
+* {
+  box-sizing: border-box;
+}
+
+/* smooth cinematic scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Next.js root safety */
+#__next {
+  overflow-x: hidden;
 }

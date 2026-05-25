@@ -3,17 +3,20 @@
 import { useEffect, useMemo, useState } from 'react';
 
 import {
-  ClipboardList,
-  BarChart3,
-  Sparkles,
+  FolderKanban,
   Search,
-  Eye,
-  Pencil,
+  Upload,
+  ImageIcon,
+  Video,
+  FileText,
   Trash2,
+  Pencil,
+  Eye,
   Plus,
+  Sparkles,
+  HardDrive,
+  Files,
   Clock3,
-  CheckCircle2,
-  Users,
   ArrowUpRight,
 } from 'lucide-react';
 
@@ -21,70 +24,67 @@ import DataTable from '@/src/components/admin/DataTable';
 import EmptyState from '@/src/components/admin/EmptyState';
 import LoadingState from '@/src/components/admin/LoadingState';
 
-interface Survey {
+interface ContentItem {
   id: string;
-  title: string;
-  status: 'active' | 'draft' | 'closed';
-  responses: number;
+  name: string;
+  type: 'Image' | 'Video' | 'Document';
+  size: string;
+  uploaded_by: string;
   created_at: string;
-  category: string;
+  status: 'Published' | 'Draft';
 }
 
-export default function AdminSurveysPage() {
-  const [surveys, setSurveys] = useState<Survey[]>([]);
+export default function AdminContentPage() {
+  const [content, setContent] = useState<ContentItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    const demoSurveys: Survey[] = [
+    const demoContent: ContentItem[] = [
       {
         id: '1',
-        title: 'Film Awareness Survey',
-        status: 'active',
-        responses: 128,
-        created_at: '2025-05-10',
-        category: 'Awareness',
+        name: 'main-banner.jpg',
+        type: 'Image',
+        size: '2.4 MB',
+        uploaded_by: 'Admin',
+        created_at: '2025-05-20',
+        status: 'Published',
       },
       {
         id: '2',
-        title: 'User Experience Feedback',
-        status: 'draft',
-        responses: 0,
+        name: 'documentary-trailer.mp4',
+        type: 'Video',
+        size: '124 MB',
+        uploaded_by: 'John Doe',
         created_at: '2025-05-18',
-        category: 'Feedback',
+        status: 'Published',
       },
       {
         id: '3',
-        title: 'Documentary Impact Study',
-        status: 'closed',
-        responses: 342,
-        created_at: '2025-04-22',
-        category: 'Research',
+        name: 'research-paper.pdf',
+        type: 'Document',
+        size: '8.1 MB',
+        uploaded_by: 'Admin',
+        created_at: '2025-05-15',
+        status: 'Draft',
       },
     ];
 
     setTimeout(() => {
-      setSurveys(demoSurveys);
+      setContent(demoContent);
       setIsLoading(false);
     }, 1200);
   }, []);
 
-  const filteredSurveys = useMemo(() => {
-    return surveys.filter((survey) =>
-      `${survey.title} ${survey.category}`
+  const filteredContent = useMemo(() => {
+    return content.filter((item) =>
+      `${item.name} ${item.type}`
         .toLowerCase()
         .includes(search.toLowerCase())
     );
-  }, [search, surveys]);
+  }, [content, search]);
 
-  const activeSurveys = surveys.filter(
-    (s) => s.status === 'active'
-  ).length;
-
-  const totalResponses = surveys.reduce(
-    (acc, curr) => acc + curr.responses,
-    0
-  );
+  const totalStorage = '134.5 GB';
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -105,17 +105,17 @@ export default function AdminSurveysPage() {
               />
 
               <span className="text-xs uppercase tracking-[0.25em] text-zinc-400">
-                Survey Management
+                Content Management
               </span>
             </div>
 
             <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-              Surveys
+              Content Library
             </h1>
 
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400">
-              Create surveys, monitor responses, and analyze
-              engagement data across the platform.
+              Upload, organize, and manage your platform
+              media assets, videos, and documents.
             </p>
           </div>
 
@@ -125,19 +125,19 @@ export default function AdminSurveysPage() {
               inline-flex items-center justify-center gap-2
               rounded-2xl
               bg-white
-              px-5 py-3
+              px-6 py-3
               text-sm font-medium text-black
               transition-all duration-300
               hover:scale-[1.03]
             "
           >
-            <Plus size={18} />
-            Create Survey
+            <Upload size={18} />
+            Upload Content
           </button>
         </div>
 
         {/* ================================================= */}
-        {/* HERO SECTION */}
+        {/* HERO */}
         {/* ================================================= */}
 
         <section
@@ -165,21 +165,21 @@ export default function AdminSurveysPage() {
             <div className="max-w-2xl">
 
               <p className="mb-4 text-xs uppercase tracking-[0.3em] text-zinc-500">
-                ANALYTICS & INSIGHTS
+                DIGITAL ASSET CENTER
               </p>
 
               <h2 className="text-3xl font-bold leading-tight lg:text-5xl">
-                Understand Your
+                Organize Your
                 <span className="bg-gradient-to-r from-pink-400 to-violet-400 bg-clip-text text-transparent">
                   {' '}
-                  Audience Better
+                  Media Ecosystem
                 </span>
               </h2>
 
               <p className="mt-5 text-sm leading-relaxed text-zinc-400">
-                Monitor engagement, track survey completion,
-                and gain valuable audience insights in
-                real-time.
+                Manage videos, images, documents, and all
+                platform resources from one centralized
+                content dashboard.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
@@ -195,7 +195,7 @@ export default function AdminSurveysPage() {
                     hover:scale-[1.03]
                   "
                 >
-                  View Analytics
+                  Open Media Library
                   <ArrowUpRight size={16} />
                 </button>
 
@@ -211,7 +211,7 @@ export default function AdminSurveysPage() {
                     hover:bg-white/10
                   "
                 >
-                  Export Reports
+                  Manage Storage
                 </button>
               </div>
             </div>
@@ -224,7 +224,7 @@ export default function AdminSurveysPage() {
                 <div className="flex items-center gap-3">
 
                   <div className="rounded-2xl bg-pink-500/20 p-3">
-                    <ClipboardList
+                    <Files
                       size={20}
                       className="text-pink-400"
                     />
@@ -232,11 +232,11 @@ export default function AdminSurveysPage() {
 
                   <div>
                     <p className="text-xs text-zinc-500">
-                      Total Surveys
+                      Total Files
                     </p>
 
                     <h3 className="font-semibold text-white">
-                      {surveys.length}
+                      {content.length}
                     </h3>
                   </div>
                 </div>
@@ -247,7 +247,7 @@ export default function AdminSurveysPage() {
                 <div className="flex items-center gap-3">
 
                   <div className="rounded-2xl bg-emerald-500/20 p-3">
-                    <CheckCircle2
+                    <HardDrive
                       size={20}
                       className="text-emerald-400"
                     />
@@ -255,34 +255,11 @@ export default function AdminSurveysPage() {
 
                   <div>
                     <p className="text-xs text-zinc-500">
-                      Active
+                      Storage Used
                     </p>
 
                     <h3 className="font-semibold text-emerald-400">
-                      {activeSurveys}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
-
-                <div className="flex items-center gap-3">
-
-                  <div className="rounded-2xl bg-sky-500/20 p-3">
-                    <Users
-                      size={20}
-                      className="text-sky-400"
-                    />
-                  </div>
-
-                  <div>
-                    <p className="text-xs text-zinc-500">
-                      Responses
-                    </p>
-
-                    <h3 className="font-semibold text-sky-400">
-                      {totalResponses}
+                      {totalStorage}
                     </h3>
                   </div>
                 </div>
@@ -293,7 +270,7 @@ export default function AdminSurveysPage() {
                 <div className="flex items-center gap-3">
 
                   <div className="rounded-2xl bg-violet-500/20 p-3">
-                    <BarChart3
+                    <ImageIcon
                       size={20}
                       className="text-violet-400"
                     />
@@ -301,11 +278,34 @@ export default function AdminSurveysPage() {
 
                   <div>
                     <p className="text-xs text-zinc-500">
-                      Insights
+                      Images
                     </p>
 
                     <h3 className="font-semibold text-violet-400">
-                      Live
+                      124
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
+
+                <div className="flex items-center gap-3">
+
+                  <div className="rounded-2xl bg-sky-500/20 p-3">
+                    <Video
+                      size={20}
+                      className="text-sky-400"
+                    />
+                  </div>
+
+                  <div>
+                    <p className="text-xs text-zinc-500">
+                      Videos
+                    </p>
+
+                    <h3 className="font-semibold text-sky-400">
+                      38
                     </h3>
                   </div>
                 </div>
@@ -315,7 +315,7 @@ export default function AdminSurveysPage() {
         </section>
 
         {/* ================================================= */}
-        {/* TABLE SECTION */}
+        {/* CONTENT TABLE */}
         {/* ================================================= */}
 
         <section
@@ -334,11 +334,11 @@ export default function AdminSurveysPage() {
 
             <div>
               <h2 className="text-2xl font-semibold">
-                Survey Directory
+                Media Assets
               </h2>
 
               <p className="mt-1 text-sm text-zinc-500">
-                Manage all platform surveys and responses.
+                View and manage all uploaded content.
               </p>
             </div>
 
@@ -352,7 +352,7 @@ export default function AdminSurveysPage() {
 
               <input
                 type="text"
-                placeholder="Search surveys..."
+                placeholder="Search content..."
                 value={search}
                 onChange={(e) =>
                   setSearch(e.target.value)
@@ -368,7 +368,6 @@ export default function AdminSurveysPage() {
                   transition-all duration-300
                   placeholder:text-zinc-500
                   focus:border-white/20
-                  focus:bg-black/60
                 "
               />
             </div>
@@ -377,72 +376,81 @@ export default function AdminSurveysPage() {
           {/* CONTENT */}
           {isLoading ? (
             <LoadingState rows={5} />
-          ) : filteredSurveys.length === 0 ? (
+          ) : filteredContent.length === 0 ? (
             <EmptyState
-              title="No surveys found"
-              description="No survey records are currently available."
+              title="No content found"
+              description="Your media library is currently empty."
+              action={{
+                label: 'Upload Content',
+                onClick: () =>
+                  console.log('Upload'),
+              }}
             />
           ) : (
             <DataTable
               columns={[
                 {
-                  key: 'title',
-                  label: 'Survey',
+                  key: 'name',
+                  label: 'File Name',
                 },
                 {
-                  key: 'category',
-                  label: 'Category',
+                  key: 'type',
+                  label: 'Type',
+                },
+                {
+                  key: 'size',
+                  label: 'Size',
+                },
+                {
+                  key: 'uploaded_by',
+                  label: 'Uploaded By',
                 },
                 {
                   key: 'status',
                   label: 'Status',
                 },
                 {
-                  key: 'responses',
-                  label: 'Responses',
-                },
-                {
                   key: 'created_at',
-                  label: 'Created',
+                  label: 'Date',
                 },
               ]}
-              data={filteredSurveys.map((survey) => ({
-                ...survey,
+              data={filteredContent.map((item) => ({
+                ...item,
 
-                category: (
-                  <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-300">
-                    {survey.category}
-                  </div>
-                ),
+                type:
+                  item.type === 'Image' ? (
+                    <div className="inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-400">
+                      <ImageIcon size={12} />
+                      Image
+                    </div>
+                  ) : item.type === 'Video' ? (
+                    <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/20 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-400">
+                      <Video size={12} />
+                      Video
+                    </div>
+                  ) : (
+                    <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400">
+                      <FileText size={12} />
+                      Document
+                    </div>
+                  ),
 
                 status:
-                  survey.status === 'active' ? (
+                  item.status === 'Published' ? (
                     <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400">
-                      <CheckCircle2 size={12} />
-                      Active
+                      Published
                     </div>
-                  ) : survey.status ===
-                    'draft' ? (
+                  ) : (
                     <div className="inline-flex items-center gap-2 rounded-full border border-yellow-500/20 bg-yellow-500/10 px-3 py-1 text-xs font-medium text-yellow-400">
                       <Clock3 size={12} />
                       Draft
                     </div>
-                  ) : (
-                    <div className="inline-flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1 text-xs font-medium text-red-400">
-                      Closed
-                    </div>
                   ),
-
-                responses: (
-                  <div className="font-medium text-white">
-                    {survey.responses}
-                  </div>
-                ),
 
                 created_at: (
                   <div className="text-zinc-400">
                     {new Date(
-                      survey.created_at
+                      item.created_at
                     ).toLocaleDateString()}
                   </div>
                 ),
