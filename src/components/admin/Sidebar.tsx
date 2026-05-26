@@ -7,11 +7,8 @@ import { useState } from 'react';
 import {
   LayoutDashboard,
   Users,
-  Film,
   ClipboardList,
   MessageSquare,
-  FolderKanban,
-  Settings,
   Menu,
   X,
   Shield,
@@ -35,11 +32,6 @@ export default function AdminSidebar() {
       icon: Users,
     },
     {
-      label: 'Films',
-      href: '/admin/films',
-      icon: Film,
-    },
-    {
       label: 'Surveys',
       href: '/admin/surveys',
       icon: ClipboardList,
@@ -49,16 +41,6 @@ export default function AdminSidebar() {
       href: '/admin/feedback',
       icon: MessageSquare,
     },
-    {
-      label: 'Content',
-      href: '/admin/content',
-      icon: FolderKanban,
-    },
-    {
-      label: 'Settings',
-      href: '/admin/settings',
-      icon: Settings,
-    },
   ];
 
   return (
@@ -66,7 +48,6 @@ export default function AdminSidebar() {
       {/* ================================================= */}
       {/* MOBILE TOGGLE */}
       {/* ================================================= */}
-
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="
@@ -77,10 +58,8 @@ export default function AdminSidebar() {
           bg-black/70
           p-3
           text-white
-          shadow-2xl
           backdrop-blur-xl
-          transition-all
-          duration-300
+          transition
           hover:bg-white/10
           md:hidden
         "
@@ -91,7 +70,6 @@ export default function AdminSidebar() {
       {/* ================================================= */}
       {/* SIDEBAR */}
       {/* ================================================= */}
-
       <aside
         className={`
           fixed left-0 top-0 z-50
@@ -99,54 +77,42 @@ export default function AdminSidebar() {
           border-r border-white/10
           bg-zinc-950/95
           backdrop-blur-2xl
-          transition-transform duration-300 ease-in-out
+          transition-transform duration-300
 
-          ${
-            isOpen
-              ? 'translate-x-0'
-              : '-translate-x-full'
-          }
-
+          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
           md:translate-x-0
         `}
       >
 
         {/* ================================================= */}
-        {/* TOP BRAND */}
+        {/* BRAND */}
         {/* ================================================= */}
-
         <div className="border-b border-white/10 p-7">
 
           <div className="flex items-center gap-4">
 
-            {/* LOGO */}
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-violet-600 shadow-lg shadow-pink-500/20">
-
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-violet-600">
               <Shield size={22} className="text-white" />
             </div>
 
-            {/* TITLE */}
             <div>
-
-              <h2 className="text-lg font-bold tracking-wide text-white">
+              <h2 className="text-lg font-bold text-white">
                 Admin Panel
               </h2>
-
               <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">
                 NGINIG SYSTEM
               </p>
             </div>
+
           </div>
         </div>
 
         {/* ================================================= */}
         {/* NAVIGATION */}
         {/* ================================================= */}
-
         <div className="flex-1 overflow-y-auto px-4 py-6">
 
           <div className="mb-4 px-3">
-
             <p className="text-[11px] uppercase tracking-[0.25em] text-zinc-600">
               Navigation
             </p>
@@ -155,9 +121,7 @@ export default function AdminSidebar() {
           <nav className="space-y-2">
 
             {menuItems.map((item) => {
-              const isActive =
-                pathname === item.href;
-
+              const isActive = pathname === item.href;
               const Icon = item.icon;
 
               return (
@@ -166,99 +130,85 @@ export default function AdminSidebar() {
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   className={`
-                    group
-                    relative
-                    flex items-center justify-between
-                    rounded-2xl
-                    px-4 py-3.5
+                    group flex items-center justify-between
+                    rounded-2xl px-4 py-3.5
                     transition-all duration-300
 
                     ${
                       isActive
                         ? `
                           border border-white/10
-                          bg-gradient-to-r
-                          from-pink-500/20
-                          to-violet-500/20
+                          bg-gradient-to-r from-pink-500/20 to-violet-500/20
                           text-white
-                          shadow-lg
-                          shadow-pink-500/5
                         `
                         : `
-                          text-zinc-400
-                          hover:bg-white/[0.04]
-                          hover:text-white
+                          text-zinc-400 hover:bg-white/5 hover:text-white
                         `
                     }
                   `}
                 >
 
-                  {/* LEFT */}
                   <div className="flex items-center gap-4">
 
                     <div
                       className={`
-                        rounded-xl
-                        p-2
-                        transition-all duration-300
-
+                        p-2 rounded-xl transition
                         ${
                           isActive
                             ? 'bg-white/10 text-pink-300'
-                            : 'bg-white/[0.03] text-zinc-500 group-hover:text-white'
+                            : 'bg-white/5 text-zinc-400 group-hover:text-white'
                         }
                       `}
                     >
                       <Icon size={18} />
                     </div>
 
-                    <span className="text-sm font-medium tracking-wide">
+                    <span className="text-sm font-medium">
                       {item.label}
                     </span>
+
                   </div>
 
-                  {/* RIGHT ICON */}
                   <ChevronRight
                     size={16}
                     className={`
-                      transition-all duration-300
-
+                      transition
                       ${
                         isActive
-                          ? 'translate-x-0 opacity-100'
-                          : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'
+                          ? 'opacity-100'
+                          : 'opacity-0 group-hover:opacity-100'
                       }
                     `}
                   />
+
                 </Link>
               );
             })}
+
           </nav>
         </div>
 
         {/* ================================================= */}
         {/* FOOTER */}
         {/* ================================================= */}
-
         <div className="border-t border-white/10 p-5">
 
           {/* PROFILE */}
-          <div className="mb-4 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3">
+          <div className="mb-4 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3">
 
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-violet-500 text-sm font-bold text-white">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-violet-500 text-white font-bold">
               A
             </div>
 
-            <div className="flex-1">
-
+            <div>
               <h4 className="text-sm font-semibold text-white">
                 Administrator
               </h4>
-
               <p className="text-xs text-zinc-500">
                 admin@nginig.com
               </p>
             </div>
+
           </div>
 
           {/* LOGOUT */}
@@ -270,26 +220,25 @@ export default function AdminSidebar() {
               bg-red-500/10
               px-4 py-3
               text-sm font-medium text-red-400
-              transition-all duration-300
               hover:bg-red-500/20
+              transition
             "
           >
             <LogOut size={16} />
-
             Logout
           </button>
 
-          {/* COPYRIGHT */}
-          <p className="mt-5 text-center text-[11px] tracking-wide text-zinc-600">
+          <p className="mt-5 text-center text-[11px] text-zinc-600">
             © 2025 Nginig Admin System
           </p>
+
         </div>
+
       </aside>
 
       {/* ================================================= */}
       {/* MOBILE BACKDROP */}
       {/* ================================================= */}
-
       {isOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm md:hidden"
