@@ -10,11 +10,6 @@ import {
   MailCheck,
   MailX,
   UserX,
-  Eye,
-  Pencil,
-  Trash2,
-  Plus,
-  ArrowUpRight,
 } from 'lucide-react';
 
 import DataTable from '@/src/components/admin/DataTable';
@@ -76,12 +71,7 @@ export default function AdminUsersPage() {
   }, [users, search]);
 
   const activeUsers = users.filter((u) => u.is_active).length;
-
   const verifiedUsers = users.filter((u) => u.is_email_verified).length;
-
-  const handleBanUser = async (user: User) => {
-    console.log('Ban user:', user.id);
-  };
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -111,18 +101,7 @@ export default function AdminUsersPage() {
             </p>
           </div>
 
-          <button className="
-            inline-flex items-center justify-center gap-2
-            rounded-2xl
-            bg-white
-            px-5 py-3
-            text-sm font-medium text-black
-            transition-all duration-300
-            hover:scale-[1.03]
-          ">
-            <Plus size={18} />
-            Add User
-          </button>
+          {/* REMOVED BUTTONS AREA (cleaned) */}
         </div>
 
         {/* ================================================= */}
@@ -161,38 +140,9 @@ export default function AdminUsersPage() {
               <p className="mt-5 text-sm leading-relaxed text-zinc-400">
                 Monitor user activity, verify accounts, manage roles, and maintain platform safety.
               </p>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-
-                <button className="
-                  inline-flex items-center gap-2
-                  rounded-2xl
-                  bg-white
-                  px-5 py-3
-                  text-sm font-medium text-black
-                  hover:scale-[1.03]
-                  transition
-                ">
-                  View Analytics
-                  <ArrowUpRight size={16} />
-                </button>
-
-                <button className="
-                  inline-flex items-center gap-2
-                  rounded-2xl
-                  border border-white/10
-                  bg-white/5
-                  px-5 py-3
-                  text-sm text-white
-                  hover:bg-white/10
-                ">
-                  Export Users
-                </button>
-
-              </div>
             </div>
 
-            {/* RIGHT */}
+            {/* RIGHT STATS */}
             <div className="grid grid-cols-2 gap-4">
 
               <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
@@ -348,17 +298,6 @@ export default function AdminUsersPage() {
                   </div>
                 ),
               }))}
-
-              actions={[
-                { label: 'View', onClick: (row) => console.log(row) },
-                { label: 'Edit', onClick: (row) => console.log(row) },
-                {
-                  label: 'Ban',
-                  onClick: (row) => console.log('Ban:', row),
-                  className:
-                    'border-red-500/20 bg-red-500/10 text-red-400 hover:bg-red-500/20',
-                },
-              ]}
             />
           )}
 
